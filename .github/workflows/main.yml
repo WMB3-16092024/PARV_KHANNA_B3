@@ -1,0 +1,81 @@
+name: Get Branch Name, Commit Hash, Commits, and Changes
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  get-branch-name-commit-hash-commits-and-changes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log start of script
+        run: echo "GitHub Actions script is starting..."
+
+      - name: Enable debugging
+        run: |
+          # Enable shell debugging for detailed logs
+          set -x
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Get branch name
+        id: branch
+        run: echo "::set-output name=branch_name::$(echo $GITHUB_REF | cut -d/ -f3-)"
+
+      - name: Get latest commit hash
+        id: commit
+        run: |
+          echo "::set-output name=commit_hash::$(git log -1 --pretty=format:'%h')"
+          echo "::set-output name=commit_author::$(git log -1 --pretty=format:'%an')"
+
+      - name: Make API call and Log branch name, commit hash, and GitHub ref
+        run: |
+          # Enable shell debugging to see the detailed execution
+          set -x
+
+          # Retrieve outputs from previous steps
+          branch_name="${{ steps.branch.outputs.branch_name }}"
+          commit_hash="${{ steps.commit.outputs.commit_hash }}"
+          commit_author="${{ steps.commit.outputs.commit_author }}"
+          user_id="${{ secrets.USER_ID }}"
+
+          # Log the variables to debug the actual values
+          echo "Branch Name: $branch_name"
+          echo "Commit Hash: $commit_hash"
+          echo "Commit Author: $commit_author"
+          echo "GitHub Ref: $GITHUB_REF"
+          echo "User ID: $user_id"
+
+          # Constructing the JSON payload for the API call
+          api_url="https://webmaster-portal-5lf2.onrender.com/graphql"
+
+          # Log the API URL and constructed data for debugging
+          echo "API URL: $api_url"
+
+          # First API call to get questionId
+          questionIdResponse=$(curl --location "$api_url" \
+          --header 'Content-Type: application/json' \
+          --data '{"query":"query GetQuestionIdByBranchName($branchName: String) { getQuestionIdByBranchName(branchName: $branchName) { questionId response { message status } }}","variables":{"branchName":"'"$branch_name"'"}}')
+
+          # Log the response for debugging
+          echo "QuestionId Response: $questionIdResponse"
+
+          # Extracting questionId field value using jq
+          questionId=$(echo "$questionIdResponse" | jq -r '.data.getQuestionIdByBranchName.questionId')
+
+          echo "Extracted Question ID: $questionId"
+
+          # Log question ID before making the second API call
+          if [ -z "$questionId" ]; then
+            echo "Error: Question ID is empty. Debugging required!"
+          fi
+
+          # Second API call for upserting GitHub data
+          response=$(curl --location "$api_url" \
+          --header 'Content-Type: application/json' \
+          --data '{"query":"mutation Mutation($input: UserGithubDataInputType) { upsertUserGithubData(input: $input) { response { status message } data { commitHash branchRef branchName userId commitAuthor questionId } }}","variables":{"input":{"commitHash":"'"$commit_hash"'","branchRef": "'"$GITHUB_REF"'","branchName": "'"$branch_name"'","userId": "'"$user_id"'","commitAuthor": "'"$commit_author"'","questionId": "'"$questionId"'"}}}')
+
+          # Log the second API call response
+          echo "API Response: $response"
