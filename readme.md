@@ -1,1 +1,0 @@
-Create a basic HTML file structure setup with head and body tags, along with doctype. Show a text on the UI:  Hi {your_name}
