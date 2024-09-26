@@ -32,8 +32,7 @@ body {
       height: 40ch;
       text-align: center;
      }
-     .size-in-rem
-     {
+     .size-in-rem{
       border: 5px solid black;
       width: 4rem;
       height: 4rem;
