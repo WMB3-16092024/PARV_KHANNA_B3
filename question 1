@@ -1,0 +1,19 @@
+Create 10 div elements using only HTML and CSS. Each div should have a unique width and height specified in one of the following units:
+
+cm
+in
+px
+em
+ch
+rem
+vh
+vw
+vmin
+vmax
+Your task is to:
+
+Create 10 div elements in the HTML.
+Style each div with a different unit for both width and height in the CSS.
+Give each div a unique background color to distinguish them from one another.
+Optionally, add text inside each div to indicate which units are used for that div’s width and height.
+Write the HTML and CSS to achieve this.
