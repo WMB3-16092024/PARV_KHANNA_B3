@@ -1,0 +1,28 @@
+.main-container {
+  border: 10px double grey;
+  height: 400px;
+}
+.container {
+  border: 3px solid grey;
+  width: 6vw;
+  height: 27vh;
+  display: inline-block;
+}
+
+.hidden {
+  overflow: hidden;
+}
+
+.scroll {
+  overflow: scroll;
+}
+
+.scroll-x {
+  overflow: hidden;
+  overflow-x: auto;
+}
+
+.scroll-y {
+  overflow: hidden;
+  overflow-y: auto;
+}
