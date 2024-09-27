@@ -1,0 +1,1 @@
+create a box of any size with text inside it, and apply a gradient color effect to the text using CSS?
