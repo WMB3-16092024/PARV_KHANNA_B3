@@ -1,73 +1,28 @@
-body {
-        background: linear-gradient(rgb(97, 97, 244), rgb(236, 237, 239));
-     }
+.main-container {
+  border: 10px double grey;
+  height: 400px;
+}
+.container {
+  border: 3px solid grey;
+  width: 6vw;
+  height: 27vh;
+  display: inline-block;
+}
 
-     .size-in-cm
-     {
-      border: 10px solid rgba(27, 79, 74, 0.502);
-       width: 3cm;
-       height: 3cm;
-       text-align: center;
-     }
+.hidden {
+  overflow: hidden;
+}
 
-     .size-in-pixels
-     {
-      border: 5px solid rgba(251, 7, 7, 0.502);
-      width: 80px;
-      height: 80px;
-      text-align: center;
-     }
+.scroll {
+  overflow: scroll;
+}
 
-     .size-in-em
-     {
-      border: 5px solid black;
-      width: 4em;
-      height: 4em;
-      text-align: center;
-     }
-     .size-in-ch
-     {
-      border: 5px solid black;
-      width: 40ch;
-      height: 40ch;
-      text-align: center;
-     }
-     .size-in-rem{
-      border: 5px solid black;
-      width: 4rem;
-      height: 4rem;
-      text-align: center;
-     }
-     .size-in-vh
-     {
-      border: 5px solid black;
-      width: 4vh;
-      height: 4vh;
-      text-align: center;
-     }
-     .size-in-vw
-     {
-      border: 5px solid black;
-      width: 4vw;
-      height: 4vw;
-      text-align: center;
-     }
-     .size-in-vmin
-     {
-      border: 5px solid black;
-      width: 4em;
-      height: 4em;
-      text-align: center;
-     }
-     .size-in-vmax
-     {
-      border: 5px solid black;
-      width: 4em;
-      height: 4em;
-      text-align: center;
-     }
+.scroll-x {
+  overflow: hidden;
+  overflow-x: auto;
+}
 
-
-
-
-
+.scroll-y {
+  overflow: hidden;
+  overflow-y: auto;
+}
