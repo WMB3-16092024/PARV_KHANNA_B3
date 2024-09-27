@@ -1,0 +1,17 @@
+.gradient-box {
+    align-items: center;
+    width: 300px;
+    height: 200px;
+    border: 2px solid #ccc;
+    /* padding: 90px; */
+    background-color: #ffffff;
+}
+
+.gradient-box p {
+    margin: 50% 0 0 20px;
+    font-size: 30px;
+    font-weight: bold;
+    background: linear-gradient(to right, #ff0000, #00ff00, #0000ff);
+    background-clip: text;
+    color: transparent;
+}
