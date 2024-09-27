@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+}
+
+.container {
+    border: 2px solid black;
+    padding: 20px;
+}
+
+.box {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+}
+
+.box1 {
+    background: radial-gradient( rgb(4, 82, 249), rgb(189, 199, 240));
+}
+
+.box2 {
+    background: linear-gradient( red, yellow);
+}
+
+
+.box3 {
+    background: linear-gradient(to bottom right, rgb(2, 41, 3), rgb(46, 249, 53));
+}
+
+.box4 {
+    background: linear-gradient(to bottom right,rgb(235, 15, 235),rgb(66, 86, 239),pink);
+}
